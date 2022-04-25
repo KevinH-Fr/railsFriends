@@ -1,6 +1,7 @@
-# README
+# Friends list app
 
-Hello here !
+Hello here !! Bis
+my name is Kevin
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
