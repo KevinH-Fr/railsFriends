@@ -1,0 +1,45 @@
+
+<% if user_signed_in? %>
+
+<h1>Lignes commandes</h1>
+
+  <table class="table table-striped table-bordered table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th>Nom</th>
+        <th>quantité</th>
+        <th>prix</th>
+        <th>commentaires</th>
+        <th>commande_id</th>
+      </tr>
+    </thead>
+
+    <tbody>
+    <% @lignes_commandes.each do |lignes_commande| %>
+          <tr>
+          
+            <td> <%= link_to lignes_commande.nom, lignes_commande %> </td>
+            <td> <%= lignes_commande.quantite %>    </td>
+            <td> <%= lignes_commande.prix %>    </td>
+            <td> <%= lignes_commande.commentaires %>    </td>
+            <td> <%= lignes_commande.commande_id %>    </td>
+            
+          </tr>
+
+<% end %>
+    </tbody>
+  </table>
+
+  <br>
+  <%= link_to "Nouvelle ligne commande", new_lignes_commande_path, class:"btn btn-primary" %>
+
+
+
+
+
+<% else %>
+
+  <h3> Vous n'avez pas les droits...</h3>
+  
+  
+<% end %>

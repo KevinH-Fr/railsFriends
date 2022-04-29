@@ -1,0 +1,219 @@
+<h1>Produits</h1>
+
+  <table class="table table-striped table-bordered table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th>Name</th>
+        <th>Prix</th>
+        <th>Image</th>
+         <th>Action ajout</th>
+      </tr>
+    </thead>
+
+    <tbody>
+    <% @produits.each do |produit| %>
+          <tr>
+          
+          <td> <%= link_to produit.nom, produit %> </td>
+            <td> <%= produit.prix %>    </td>
+
+            <td>
+            
+            <% if produit.image.attached? %> 
+               <%= image_tag produit.image, style: "width: 50px; display: block" %>
+          <% end %>
+          </td>
+
+          <td> <%= link_to "Ajout", new_lignes_commande_path(:produit => params[:produit]), class:"btn btn-secondary" %> </td>
+
+
+          
+            <td> <%= link_to produit.nom, new_lignes_commande_path(:produit => params[:id2]) %> </td>
+           
+        
+          </tr>
+
+    <% end %>
+    </tbody>
+  </table>
+
+
+<form action="/books">
+  <input type="text" name="book[title]" id="book_title">
+  <input type="text" name="book[author]" id="book_author">
+  <input type="text" name="book[cover]" id="book_cover">
+  <select name="book[language]" id="book_language">
+    <option value="English">English</option>
+    <option value="Spanish">Spanish</option>
+    <option value="French">French</option>
+  </select>
+  <button type="submit">Create</button>
+</form>
+
+ <input type="text" value="<%= params[:id] %>">
+
+
+
+
+
+
+
+
+<%= form_with(model: lignes_commande) do |form| %>
+  <% if lignes_commande.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(lignes_commande.errors.count, "error") %> prohibited this lignes_commande from being saved:</h2>
+
+      <ul>
+        <% lignes_commande.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :nom, style: "display: block" %>
+    <%= form.text_field :nom, class:"form-control", placeholder:"nom"  %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :quantite, style: "display: block" %>
+    <%= form.number_field :quantite, class:"form-control", placeholder:"quantité"  %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :prix, style: "display: block" %>
+    <%= form.text_field :prix, class:"form-control", placeholder:"prix"  %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :commentaires, style: "display: block" %>
+    <%= form.text_area :commentaires, class:"form-control", placeholder:"commentaires"  %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :commande_id, style: "display: block" %>
+    <%= form.text_field :commande_id, value: params['commande_id'] %>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <select id ="my-select", name="language">
+        <% Produit.all.each do |produit| %>
+            <option value="<%= produit.id %>"><%= produit.nom %></option>
+        <% end %>
+    </select>
+
+  </br> </br>
+
+<script type="text/javascript">
+
+ document.getElementById('my-select').addEventListener('change', function() {
+  console.log('Produit selectionné ID : ', this.value);
+
+});
+
+
+</script>
+
+<h1>liste du produit id variable  </h1>
+
+
+<div id ="select2", class="field">
+  <%= form.label :Selection %>
+  <%= form.select :id, 
+      options_for_select(@produits.collect{ |s| [s.id, s.nom] }, 
+      params[:dropdownselectvalue]), 
+       include_blank: 'select brand' %>
+</div>
+
+
+
+
+<h1>liste produit id fixe</h1>
+
+  <table class="table table-striped table-bordered table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th>Name</th>
+        <th>Prix</th>
+        <th>Image</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    <% @produit = Produit.find('1') %>
+          <tr>
+          
+          <td> <%= link_to @produit.nom, @produit %> </td>
+          <td> <%= @produit.prix %>    </td>
+          
+          </tr>
+
+    </tbody>
+
+  </table>
+    
+
+<h1>liste du produit id fixe bis  </h1>
+
+
+
+  <table class="table table-striped table-bordered table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th>Name</th>
+        <th>Prix</th>
+        <th>Image</th>
+      </tr>
+    </thead>
+    <tbody>
+
+           <% @produit = Produit.find('2') %>
+          <tr>
+          
+          <td> <%= link_to @produit.nom, @produit %> </td>
+          <td> <%= @produit.prix %>    </td>
+          
+          </tr>
+   
+
+    </tbody>
+
+  </table>
+
+
+
+
+
+
+  <div>
+    <%= form.submit class: 'btn btn-primary', value: 'Enregistrer nouvelle ligne' %>
+  </div>
+<% end %>

@@ -1,0 +1,24 @@
+
+<h1> Détails lignes commandes </h1>
+
+<div class="jumbotron">
+
+  <h1 class="display-4">
+    <%= @lignes_commande.nom  %> |
+    <%= @lignes_commande.commande_id  %>
+  </h1>
+
+  <p class="lead">
+  <%= @lignes_commande.quantite %> | 
+  <%= @lignes_commande.prix %> | 
+  <%= @lignes_commande.commentaires %> |  
+ 
+</p>
+
+  <hr class="my-4">
+ 
+    <%= link_to "Modifier", edit_lignes_commande_path(@lignes_commande), class:"btn btn-secondary" %> 
+    <%= link_to "Supprimer", @lignes_commande, data: { turbo_method: :delete, turbo_confirm: "Etes-vous sûr ?"}, class: "btn btn-danger" %>
+    <%= link_to "Retour", lignes_commandes_path, class:"btn btn-dark" %>
+
+</div>

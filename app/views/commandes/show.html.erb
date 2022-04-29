@@ -1,0 +1,78 @@
+
+<h1> Détails commande </h1>
+
+
+<div class="classTest">
+
+  <div class="jumbotron" style="width: 36rem;">
+    <h1 class="display-4">
+      <%= @commande.nom  %>
+    </h1>
+
+    <p class="lead">
+    <%= @commande.comment %> | 
+    <%= @commande.client_id %> |  
+   
+  </p>
+
+    <hr class="my-4">
+   
+      <%= link_to "Modifier", edit_commande_path(@commande), class:"btn btn-secondary" %> 
+      <%= link_to "Supprimer", @produit, data: { turbo_method: :delete, turbo_confirm: "Etes-vous sûr ?"}, class: "btn btn-danger" %>
+      <%= link_to "Retour", commandes_path, class:"btn btn-dark" %>
+
+  </div>
+
+
+    <h3> infos sur client lié : </h3>
+
+    <div class="card" style="width: 18rem;">
+      <div class="card-header">
+        <%=  @client = Client.find(@commande.client_id).nom %> 
+        <%=  @client = Client.find(@commande.client_id).prenom %> 
+
+      </div>
+
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><%= @commande.client_id %></li>
+        <li class="list-group-item"> <%=  @client = Client.find(@commande.client_id).telephone %> </li>
+        <li class="list-group-item"><%=  @client = Client.find(@commande.client_id).mail %> </li>
+      </ul>
+    </div>
+
+</div>
+
+
+
+  <h3> lignes commandes liées : </h3>
+
+    <table class="table table-striped table-bordered table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th>Nom</th>
+        <th>quantite</th>
+        <th>prix</th>
+        <th>commentaires</th>
+        <th>commande id</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <% @lignes_commande.each do |lignes_commande| %>
+     
+     <tr>
+       <td>  <%= link_to lignes_commande.nom, lignes_commande %> </td>
+       <td>  <%= lignes_commande.quantite %> </td>
+       <td>  <%= lignes_commande.prix %> </td>
+       <td>  <%= lignes_commande.commentaires %> </td>
+       <td>  <%= lignes_commande.commande_id %> </td>
+    </tr> 
+
+    <% end %>
+    </tbody>
+  </table>
+
+   <%= link_to "Nouvelle ligne commande", new_lignes_commande_path(:commande_id => params[:id]), class:"btn btn-primary" %>
+
+  

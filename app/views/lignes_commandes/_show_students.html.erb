@@ -1,0 +1,46 @@
+<% if @student_with_class.empty? %>
+ <h4>No records to display</h4>
+<% else %>
+
+ <table>
+   <thead>
+     <tr>
+       <th>Enrollment no</th>
+       <th>Roll no</th>
+       <th>Class</th>
+       <th>Section</th>
+       <th>Address</th>
+       <th>Father name</th>
+       <th>Mother name</th>
+       <th>Parents contact no</th>
+       <th>Additional contact no</th>
+       <th>Parents email</th>
+       <th>Student contact no</th>
+       <th>Alumni</th>
+       <th colspan="3"></th>
+     </tr>
+   </thead>
+
+   <tbody>
+     <% @student_with_class.each do |student| %>
+       <tr>
+         <td><%= student.enrollment_no %></td>
+         <td><%= student.roll_no %></td>
+         <td><%= student.class_name %></td>
+         <td><%= student.section %></td>
+         <td><%= student.address %></td>
+         <td><%= student.father_name %></td>
+         <td><%= student.mother_name %></td>
+         <td><%= student.parents_contact_no %></td>
+         <td><%= student.additional_contact_no %></td>
+         <td><%= student.parents_email %></td>
+         <td><%= student.student_contact_no %></td>
+         <td><%= student.alumni %></td>
+         <td><%= link_to 'Show', student %></td>
+         <td><%= link_to 'Edit', edit_student_path(student) %></td>
+         <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+       </tr>
+     <% end %>
+   </tbody>
+ </table>
+<% end %>

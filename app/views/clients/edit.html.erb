@@ -1,0 +1,14 @@
+
+<h1>Modifier client</h1>
+
+<%= render "form", client: @client %>
+
+<br>
+
+<div>
+
+  <%= link_to "Afficher", @client, class:"btn btn-secondary" %> 
+  <%= link_to "Supprimer", @client, data: { turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger" %>
+  <%= link_to "Retour", clients_path, class:"btn btn-dark" %>
+
+</div>

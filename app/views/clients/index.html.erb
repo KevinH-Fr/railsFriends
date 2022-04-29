@@ -1,0 +1,39 @@
+
+<% if user_signed_in? %>
+
+<h1>Clients</h1>
+
+  <table class="table table-striped table-bordered table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th>Nom</th>
+        <th>Téléphone</th>
+        <th>Mail</th>
+      </tr>
+    </thead>
+
+    <tbody>
+    <% @clients.each do |client| %>
+          <tr>
+          
+          <td> <%= link_to client.prenom + " " + client.nom, client %> </td>
+            <td> <%= client.telephone %>    </td>
+            <td> <%= client.mail %>    </td>
+            
+          </tr>
+
+<% end %>
+    </tbody>
+  </table>
+
+  <br>
+  <%= link_to "Nouveau client", new_client_path, class:"btn btn-primary" %>
+
+
+<% else %>
+
+
+  <h3> Vous n'avez pas les droits...</h3>
+  
+  
+<% end %>

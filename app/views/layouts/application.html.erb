@@ -8,16 +8,28 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <title>Friends app</title>
-        <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+    <title>A1soir App</title>
+      <%= csrf_meta_tags %>
+      <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-  <body>
 
-    <%= render 'home/header' %>
+
+     <%= render 'home/header' %>
+
+  <body class="<%= cookies[:theme] %>">
+
+  <% if cookies[:theme] == "light" %>
+    <%= link_to "go dark", root_path(theme: "dark") %>
+  <% else %>
+    <%= link_to "go light", root_path(theme: "light") %>
+  <% end %>
+
+
+
+ 
 
     <div class="container">
       <br/>
