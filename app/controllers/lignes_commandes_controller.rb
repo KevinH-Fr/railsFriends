@@ -4,6 +4,7 @@ class LignesCommandesController < ApplicationController
   # GET /lignes_commandes or /lignes_commandes.json
   def index
     @lignes_commandes = LignesCommande.all
+  
   end
 
   # GET /lignes_commandes/1 or /lignes_commandes/1.json
@@ -18,12 +19,7 @@ class LignesCommandesController < ApplicationController
      @produits = Produit.all
     # @produit = Produit.find('1')
 
-
-
-
     @lignes_commande = LignesCommande.new
-
-
 
 
   end
@@ -31,7 +27,6 @@ class LignesCommandesController < ApplicationController
   # GET /lignes_commandes/1/edit
   def edit
   end
-
 
 
 

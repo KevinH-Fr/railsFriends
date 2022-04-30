@@ -12,6 +12,18 @@
 <% end %>
  </p>
 
+
+<div class="column is-3 is-offset-1">
+  <div class="bg-white pa4 border-radius-3">
+    <h4 class="title is-5 has-text-centered"> <%= number_to_currency(@produit.prix) %></h4>
+    <p class="has-text-centered mb4">Sold by  </p>
+    <%= button_to 'Add to cart', line_items_path(produit_id: @produit) %>
+    
+  </div>
+</div>
+
+
+
   <hr class="my-4">
  
     <%= link_to "Edit", edit_produit_path(@produit), class:"btn btn-secondary" %> 

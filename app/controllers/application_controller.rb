@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
 
+
 	before_action :set_theme
 
 def set_theme
@@ -10,5 +11,8 @@ def set_theme
     redirect_to(request.referrer || root_path)
   end
 end
+
+include CurrentCart
+before_action :set_cart
 
 end

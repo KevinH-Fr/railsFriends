@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :line_items
+
+  resources :carts
+ 
 
   resources :lignes_commandes
   resources :articles
@@ -8,10 +12,12 @@ Rails.application.routes.draw do
   resources :produits
   devise_for :users
   resources :friends
+
  # get 'home/index'
   get 'home/about'
  # root 'home#index'
   root 'home#index'
+  
    devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
