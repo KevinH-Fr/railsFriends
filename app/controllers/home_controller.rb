@@ -7,4 +7,22 @@ class HomeController < ApplicationController
     @about_me2 = "Deuxième paragraphe de texte dans about me..."
   end
   
+
+  def set_commande
+    @commande = Commande.find([:commande_id])
+	rescue ActiveRecord::RecordNotFound
+		@commande = Commande.create
+       commande = @commande.id
+  end
+
+
+  def set_client
+    @client = Client.find([:client_id])
+	rescue ActiveRecord::RecordNotFound
+		@client = Client.create
+       client = @client.id
+  end
+
+
+
 end

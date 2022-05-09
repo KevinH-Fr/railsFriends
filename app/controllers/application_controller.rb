@@ -12,7 +12,24 @@ def set_theme
   end
 end
 
-include CurrentCart
-before_action :set_cart
+#include CurrentCart
+#before_action :set_cart
+
+before_action :set_commande
+before_action :set_client
+
+
+def set_commande
+  @commande = Commande.find([:commande_id])
+rescue ActiveRecord::RecordNotFound
+ 
+end
+
+def set_client
+  @client = Client.find([:client_id])
+rescue ActiveRecord::RecordNotFound
+ 
+end
+
 
 end

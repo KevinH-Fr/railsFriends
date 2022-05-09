@@ -9,6 +9,7 @@
         <th>Nom</th>
         <th>Téléphone</th>
         <th>Mail</th>
+        <th> actions </th>
       </tr>
     </thead>
 
@@ -16,9 +17,10 @@
     <% @clients.each do |client| %>
           <tr>
           
-          <td> <%= link_to client.prenom + " " + client.nom, client %> </td>
+          <td> <%= link_to client.nom, client %> </td>
             <td> <%= client.telephone %>    </td>
             <td> <%= client.mail %>    </td>
+               <td><%= button_to 'Destroy', client, method: :delete, :onclick => "return confirm('Sûr ?')" %></td> 
             
           </tr>
 

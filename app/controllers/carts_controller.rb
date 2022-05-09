@@ -6,10 +6,17 @@ class CartsController < ApplicationController
   # GET /carts or /carts.json
   def index
     @carts = Cart.all
+   # @line_item = Line_item.all
   end
 
   # GET /carts/1 or /carts/1.json
   def show
+      @cart = Cart.find(params[:id])
+      @line_items = @cart.line_items
+
+    
+  
+
   end
 
   # GET /carts/new

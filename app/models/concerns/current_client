@@ -1,0 +1,12 @@
+
+module CurrentCommande
+
+	private
+
+	def set_commande
+		@commande = Commande.find([:commande_id])
+	rescue ActiveRecord::RecordNotFound
+		@commande = Commande.create
+        commande[:commande_id] = @commande.id
+	end
+end

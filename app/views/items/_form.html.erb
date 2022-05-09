@@ -1,0 +1,39 @@
+<%= form_with(model: item) do |form| %>
+  <% if item.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(item.errors.count, "error") %> prohibited this item from being saved:</h2>
+
+      <ul>
+        <% item.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :nom, style: "display: block" %>
+    <%# passer l'id du produit cliqué dans l'item créé au passage
+    grace a cet id recuperer les autres champs de base du produit 
+     %>
+
+  <%= form.label :idProduitLie, style: "display: block" %>
+    <%= form.text_field :idProduitLie, value: params['produit_id']  %>
+
+  
+    <%= form.text_field :nom, value:'test'%> 
+  <%= form.text_field :nom, value: @produit.nom %> 
+
+  </div>
+
+  <div>
+    <%= form.label :commande_id, style: "display: block" %>
+    <%= form.text_field :commande_id, value: params['commande_id']  %>
+
+
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

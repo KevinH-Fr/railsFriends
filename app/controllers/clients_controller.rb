@@ -1,5 +1,6 @@
 class ClientsController < ApplicationController
   before_action :set_client, only: %i[ show edit update destroy ]
+  before_action :set_commande, only: %i[ show edit update destroy ]
 
   # GET /clients or /clients.json
   def index
@@ -11,8 +12,10 @@ class ClientsController < ApplicationController
 
   # GET /clients/1 or /clients/1.json
   def show
+   
      @client = Client.find(params[:id])
      @commandes = @client.commandes 
+   
   end
 
   # GET /clients/new
@@ -54,7 +57,7 @@ class ClientsController < ApplicationController
 
   # DELETE /clients/1 or /clients/1.json
   def destroy
-    @client.destroy
+    @client.delete
 
     respond_to do |format|
       format.html { redirect_to clients_url, notice: "Client was successfully destroyed." }
@@ -70,7 +73,9 @@ class ClientsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def client_params
-      params.require(:client).permit(:nom, :prenom, :telephone, :mail)
+      params.require(:client).permit(:id, :nom, :prenom, :telephone, :mail)
     end
+
+    
    
 end

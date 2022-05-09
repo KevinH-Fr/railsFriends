@@ -4,6 +4,7 @@ class ProduitsController < ApplicationController
   # GET /produits or /produits.json
   def index
     @produits = Produit.all
+    @produit = Produit.new
   end
 
   # GET /produits/1 or /produits/1.json
@@ -61,6 +62,10 @@ class ProduitsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_produit
       @produit = Produit.find(params[:id])
+    end
+
+    def set_commande
+      @commande = Commande.find(params[:commande_id])
     end
 
     # Only allow a list of trusted parameters through.

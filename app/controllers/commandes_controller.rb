@@ -13,8 +13,8 @@ class CommandesController < ApplicationController
      #@lignes_commande = @commande.lignes_commande
 
      @commande = Commande.find(params[:id])
-     @lignes_commande = @commande.lignes_commande
 
+     @item = @commande.items
 
 
     #trouver le client par son id : 
@@ -76,6 +76,8 @@ class CommandesController < ApplicationController
     end
   end
 
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_commande
@@ -83,7 +85,11 @@ class CommandesController < ApplicationController
     end
 
     # Only allow a list of trusted parameters through.
-    def commande_params
-      params.require(:commande).permit(:nom, :comment, :client_id)
-    end
+   def commande_params
+    #  params.permit(:id, :nom, :comment, :client_id)
+
+      params.require(:commande).permit(:id, :nom, :comment, :client_id)
+   end
+
+
 end

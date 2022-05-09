@@ -44,9 +44,7 @@
           commandes_path, class:"nav-link" %> 
         </li>
 
-
-    <li class="nav-item">
-
+  <li class="nav-item">
       <% if cart_has_items %>
         <%= link_to cart_path(@cart), class:"nav-link button is-warning" do %>
           <span class="icon is-small">
@@ -58,7 +56,10 @@
 
           <% end %>
       <% end %>
-   </li>
+  </li>
+
+
+
 
        
 
@@ -78,4 +79,7 @@
     </ul>
    
   </div>
+
+
 </nav>
+
