@@ -26,6 +26,9 @@ class ItemsController < ApplicationController
 
   # GET /items/1/edit
   def edit
+    unless params[:produit_id].nil? 
+      @produit = Produit.find(params[:produit_id])
+    end
   end
 
   # POST /items or /items.json
@@ -74,6 +77,6 @@ class ItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def item_params
-      params.require(:item).permit(:nom, :commande_id)
+      params.require(:item).permit(:nom, :commande_id, :produitLie, :quantite, :prix)
     end
 end

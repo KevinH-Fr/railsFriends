@@ -1,15 +1,32 @@
 
 <% if user_signed_in? %>
 
-<h1>Clients</h1>
+
+<div class="btn-group-fab" role="group" aria-label="FAB Menu">
+  <div>
+    <%= link_to '<button type="button" class="btn btn-main btn-secondary has-tooltip" data-placement="left" title="Menu"> <i class="fa fa-plus"></i> </button>'.html_safe, new_client_path,  {remote: :true, 'data-toggle': 'modal', 'data-target': '#modal-window'} %>
+  </div>
+</div>
+
+<div id="modal-window" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content"></div>
+  </div>
+</div>
+
+
+
+      <h1 class="fa-solid fa-user fa-2xl fw-bold fs-1"> - Clients</h1>   
+      <hr/> 
 
   <table class="table table-striped table-bordered table-hover">
-    <thead class="thead-dark">
+    <thead class="table-dark">
       <tr>
         <th>Nom</th>
         <th>Téléphone</th>
         <th>Mail</th>
-        <th> actions </th>
+        <th></th>
+         <th></th>
       </tr>
     </thead>
 
@@ -20,8 +37,18 @@
           <td> <%= link_to client.nom, client %> </td>
             <td> <%= client.telephone %>    </td>
             <td> <%= client.mail %>    </td>
-               <td><%= button_to 'Destroy', client, method: :delete, :onclick => "return confirm('Sûr ?')" %></td> 
-            
+
+               <td> 
+                  <%= link_to '', client, class:"fa-solid fa-eye btn btn-primary" %> 
+                  
+                  
+               </td>
+
+               <td>
+               
+                <%= button_to '', client, class:"fa-solid fa-trash-can btn btn-danger", method: :delete, :onclick => "return confirm('Sûr ?')" %>
+              </td> 
+
           </tr>
 
 <% end %>
@@ -29,7 +56,58 @@
   </table>
 
   <br>
+
+
+<%= link_to 'Add release', new_client_path, :remote => true %>
+
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content"></div>
+  </div>
+</div>
+
+
+
+
+
+
+<%= turbo_frame_tag 'post' %>
+
+<div class="mt-8" data-controller="post-modal" data-post-modal-prevent-default-action-opening="false">
+  <%= render partial: 'clients/modal_form' %>
+
+<%= link_to 'New Post', new_client_path, class: "btn btn-primary", data: { action: "click->post-modal#open", 'turbo-frame': 'post' } %>
+
+
+
+
+
+
   <%= link_to "Nouveau client", new_client_path, class:"btn btn-primary" %>
+  
+  <%= link_to "Nouveau client", new_client_path, data: { turbo_frame: 'modal' } %>
+
+<%= link_to "modal2", new_client_path, data: { "turbo-frame": "modal" } %>
+
+  <%= link_to "Open modal", "#my-modal", :class => "btn", "data-toggle" => "modal" %>
+<div class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Modal body text goes here.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
 <% else %>

@@ -1,9 +1,20 @@
 <h1>Nouveau client</h1>
 
-<%= render "form", client: @client %>
+<%= turbo_frame_tag "modal" do %>
+  <%= render "form", client: @client %>
+<% end %>
 
 <br>
 
 <div>
   <%= link_to "Retour", clients_path, class: 'btn btn-dark' %>
 </div>
+
+
+<%= turbo_frame_tag 'post' do %>
+  <turbo-stream target="client_form" action="replace">
+    <template>
+      <%= render partial: "clients/form", locals: { client: @client } %>
+    </template>
+  </turbo-stream>
+<% end %>

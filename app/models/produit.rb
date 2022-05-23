@@ -4,13 +4,6 @@ class Produit < ApplicationRecord
     
     has_one_attached :image # lier une image produit
 
-    private
-
-    def not_referenced_by_any_line_item
-        unless line_items.empty?
-            errors.add(:base, "line items present")
-            throw :abort
-        end
-    end
+  
     
 end

@@ -1,9 +1,24 @@
 Rails.application.routes.draw do
+
+
+  get 'home/index'
+  get 'other/index'
+
+  get '/home/turbo_frame_form' => 'home#turbo_frame_form', as: 'turbo_frame_form'
+  post '/home/turbo_frame_submit' => 'home#turbo_frame_submit', as: 'turbo_frame_submit'
+
+  root to: "home#index"
+
+
+
+
   resources :items
 
-  resources :line_items
+  
 
-  resources :carts
+ # resources :line_items
+
+ # resources :carts
  
 
   resources :lignes_commandes
@@ -15,13 +30,15 @@ Rails.application.routes.draw do
   resources :friends
 
  # get 'home/index'
-  get 'home/about'
+ # get 'home/about'
  # root 'home#index'
-  root 'home#index'
+#  root 'home#index'
   
    devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
+
+
 
 
 

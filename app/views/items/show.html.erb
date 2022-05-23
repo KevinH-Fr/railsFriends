@@ -1,10 +1,24 @@
-<p style="color: green"><%= notice %></p>
 
-<%= render @item %>
+<h1> Détails item </h1>
+
+<div class="jumbotron">
+  <h1 class="display-4">
+    <%= @item.nom %>
+  </h1>
+
+<p class="lead">
+  <%= @item.commande_id %>
+</p>
+
+<p class="lead">
+  Quantité : <%= @item.quantite %> 
+  Prix : <%= @item.prix %> 
+ </p>
+
+
 
 <div>
-  <%= link_to "Edit this item", edit_item_path(@item) %> |
-  <%= link_to "Back to items", items_path %>
-
-  <%= button_to "Destroy this item", @item, method: :delete %>
+  <%= link_to "Editer item", edit_item_path(@item), class: 'btn btn-primary' %> |
+  <%= link_to "Retour to items", items_path, class: 'btn btn-secondary' %> |
+  <%= button_to "Supprimer item", @item, method: :delete, class: 'btn btn-danger' %> 
 </div>

@@ -1,27 +1,19 @@
 class HomeController < ApplicationController
-  def index
+
+  # @route GET /turbo_frame_form 
+  def turbo_frame_form
   end
 
-  def about
-    @about_me = "My name is Scott..."
-    @about_me2 = "Deuxième paragraphe de texte dans about me..."
-  end
-  
-
-  def set_commande
-    @commande = Commande.find([:commande_id])
-	rescue ActiveRecord::RecordNotFound
-		@commande = Commande.create
-       commande = @commande.id
+  # @route POST /turbo_frame_submit 
+  def turbo_frame_submit
+    extracted_anynumber = params[:any][:anynumber]
+    render :turbo_frame_form, status: :ok, locals: {anynumber: extracted_anynumber, comment: 'turbo_frame_submit ok' }
   end
 
 
-  def set_client
-    @client = Client.find([:client_id])
-	rescue ActiveRecord::RecordNotFound
-		@client = Client.create
-       client = @client.id
-  end
+
+
+
 
 
 

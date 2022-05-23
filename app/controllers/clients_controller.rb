@@ -21,6 +21,11 @@ class ClientsController < ApplicationController
   # GET /clients/new
   def new
     @client = Client.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
+
   end
 
   # GET /clients/1/edit
@@ -57,6 +62,7 @@ class ClientsController < ApplicationController
 
   # DELETE /clients/1 or /clients/1.json
   def destroy
+   
     @client.delete
 
     respond_to do |format|

@@ -11,29 +11,77 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :nom, style: "display: block" %>
-    <%# passer l'id du produit cliqué dans l'item créé au passage
-    grace a cet id recuperer les autres champs de base du produit 
-     %>
 
-  <%= form.label :idProduitLie, style: "display: block" %>
-    <%= form.text_field :idProduitLie, value: params['produit_id']  %>
+
+  <div>
+
+  <div class="form-group">
+    <%= form.label :id, style: "display: block" %>
+    <%= form.text_field :id, class:"form-control", placeholder:"id"  %>
+  </div>
+
+
+  <%#  si apres selection produit   %> 
+  <% unless @produit.nil? %> 
+
+    <%= form.label :idProduitLie, style: "display: block" %>
+    <%= form.text_field :idProduitLie, class:"form-control", value: params['produit_id']  %>
+
+    <%= form.label :produitLie, style: "display: block" %>
+    <%= form.text_field :produitLie, class:"form-control", placeholder:"produitLie", value: params['produit_id']   %>
+
+    <%= form.label :nom, style: "display: block" %>
+    <%= form.text_field :nom, class:"form-control", value: @produit.nom %> 
+
+    <%= form.text_field :prix, class:"form-control", value: @produit.prix %> 
+
+    <%= form.label :quantite, style: "display: block" %>
+    <%= form.text_field :quantite, class:"form-control", value: 1 %> 
+
+    <% if @produit.image.attached? %> 
+      <%= image_tag @produit.image, style: "width: 200px; display: block" %>
+    <% end %>
+
+  <%#  si edition existant  %> 
+  <% else %>
+
+    <%= form.label :idProduitLie, style: "display: block" %>
+    <%= form.text_field :idProduitLie, class:"form-control"  %>
+
+    <%= form.label :produitLie, style: "display: block" %>
+    <%= form.text_field :produitLie, class:"form-control"   %>
+
+    <%= form.label :nom, style: "display: block" %>
+    <%= form.text_field :nom, class:"form-control" %> 
+    
+    <%= form.label :prix, style: "display: block" %>
+    <%= form.text_field :prix, class:"form-control" %> 
+
+    <%= form.label :quantite, style: "display: block" %>
+    <%= form.text_field :quantite, class:"form-control" %> 
+
+  <% end %>
+
+
+
+  <%= form.label :prix, style: "display: block" %>
+
+  <%= form.label :total, style: "display: block" %>
+  <%= form.text_field :total, class:"form-control", value: 'test' %> 
+
 
   
-    <%= form.text_field :nom, value:'test'%> 
-  <%= form.text_field :nom, value: @produit.nom %> 
 
   </div>
 
   <div>
     <%= form.label :commande_id, style: "display: block" %>
-    <%= form.text_field :commande_id, value: params['commande_id']  %>
+    <%= form.text_field :commande_id, class:"form-control", value: params['commande_id']  %>
 
 
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit class:'btn btn-secondary' %>
   </div>
 <% end %>
