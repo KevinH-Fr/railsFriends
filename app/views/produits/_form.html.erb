@@ -10,48 +10,53 @@
       </ul>
     </div>
   <% end %>
-
   
 
-  <div class="form-group">
-    <%= form.label :nom, style: "display: block" %>
-    <%= form.text_field :nom, class:"form-control", placeholder:"nom"  %>
-  </div>
+  <div class="card text-dark bg-light mb-3" style="max-width: 1080px;">
+    <div class="card-header fw-bold fs-2">Editer produit</div>
+    
+      <div class="row g-0">
+        <div class="col-md-4">
+            <% if produit.image.attached? %> 
+              <%= image_tag produit.image, style: "width: 200px; display: block", class: "img-fluid rounded-start" %>
+            <% end %>
+            <%= form.file_field :image %>
+        
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">
+                <%= form.label :nom %>  
+                <%= form.text_field :nom, class:"form-control", placeholder:"nom"  %>
+            </h5>
+            <p class="card-text">
+                <%= form.label :description, style: "display: block" %>
+                <%= form.text_field :description, class:"form-control", placeholder:"description"  %>
+              </p>
+          
+            <p class="card-text">
+                <%= form.label :prix, style: "display: block" %>
+                <%= form.text_field :prix, class:"form-control", placeholder:"prix"  %> 
+                <%= form.label :taille, style: "display: block" %>
+                <%= form.select :taille, ['Small', 'Medium', 'Large']%>
+            </p>
+            <p class="card-text">
+              <%= form.submit value: 'Valider', class:'btn btn-warning' %>
+            </p>
 
-  <div class="form-group">
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_field :description, class:"form-control", placeholder:"description"  %>
-  </div>
+            <p class="card-text">
+          
+                  <%= link_to "", @produit, class:"fa-solid fa-eye btn btn-primary" %> 
+                  <%= link_to "", @produit, data: { turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "fa-solid fa-trash-can btn btn-danger" %>
+                  <%= link_to "", produits_path, class:"fa-solid fa-rotate-left btn btn-secondary" %>
+              
+            </p>
 
-  <div class="form-group">
-    <%= form.label :prix, style: "display: block" %>
-    <%= form.text_field :prix, class:"form-control", placeholder:"prix"  %> 
-  </div>
-
-  <div class="form-group">
-    <%= form.label :taille, style: "display: block" %>
-    <%= form.text_field :taille, class:"form-control", placeholder:"taille"  %> 
-  </div>
-
-  <div class="form-group">
-    <% if produit.image.attached? %> 
-      <%= image_tag produit.image, style: "width: 200px; display: block" %>
-    <% end %>
-
-      <%= form.label :image %>
-      <%= form.file_field :image %>
-      
-  </div>
-
-
-  <div class="actions">
-    <%= form.submit class:'btn btn-secondary' %>
-  </div>
-
-
-  
-       <%= text_field :test, value: 'test' %> 
+          </div>
+          
+        </div>
 
 
   <% end %>
+
 

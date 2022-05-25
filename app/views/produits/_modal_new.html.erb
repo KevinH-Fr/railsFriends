@@ -1,0 +1,13 @@
+<br/>
+
+<%= link_to "#", class: 'btn btn-primary', data: { toggle: "modal", target: "#tweetModal" } do %>
+Ajouter nouveau
+<% end %>
+
+<div class="modal fade" id="tweetModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <%= render "produits/modal_form", produit: @produit %>
+    </div>
+  </div>
+</div>

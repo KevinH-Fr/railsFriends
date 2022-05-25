@@ -1,7 +1,12 @@
-
-<h1> Détails produit </h1>
+<br/>
+<h1 class="fa-solid fa-shirt fa-2xl fw-bold fs-1"> - Produit</h1>   
+<hr/> 
 
 <div class="card mb-3" style="max-width: 540px;">
+  <div class="card-header fw-bold fs-2">
+    <%= @produit.nom %>
+  </div>
+  
   <div class="row g-0">
     <div class="col-md-4">
     <% if @produit.image.attached? %> 
@@ -11,9 +16,6 @@
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        <h5 class="card-title">
-         <%= @produit.nom %>
-        </h5>
         <p class="card-text">
           <%= @produit.description %>
         </p>
@@ -22,34 +24,18 @@
             <%= @produit.prix %> € |
             <%= @produit.taille %> 
           <hr class="my-4">
- 
-          <%= link_to "", edit_produit_path(@produit), class:"fa-regular fa-pen-to-square btn btn-primary" %> 
-
-          <%= link_to "", produits_path, class:"fa-solid fa-arrow-rotate-left btn btn-secondary" %>
-         
-          <%= button_to '', @produit, class:"fa-solid fa-trash-can btn btn-danger", method: :delete, :onclick => "return confirm('Sûr ?')" %> 
-
+      
         </p>
+
+         <p class="card-text">
+              <%= link_to "", edit_produit_path(@produit), class:"fa-regular fa-pen-to-square btn btn-secondary" %> 
+              <%= link_to "", @produit, data: { turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "fa-solid fa-trash-can btn btn-danger" %>
+              <%= link_to "", produits_path, class:"fa-solid fa-rotate-left btn btn-secondary" %>
+          </p>
+
       </div>
     </div>
   </div>
 </div>
 
 
-<div class="modal" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Modal body text goes here.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>

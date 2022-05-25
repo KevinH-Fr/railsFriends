@@ -1,13 +1,6 @@
-<h1>Modifier produit</h1>
 
+<br/>
+<h1 class="fa-solid fa-shirt fa-2xl fw-bold fs-1"> - Produit</h1>   
+<hr/> 
 <%= render "form", produit: @produit %>
 
-<br>
-
-<div>
-
-  <%= link_to "Show", @produit, class:"btn btn-secondary" %> 
-  <%= link_to "Delete", @produit, data: { turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger" %>
-  <%= link_to "Back", produits_path, class:"btn btn-dark" %>
-
-</div>
