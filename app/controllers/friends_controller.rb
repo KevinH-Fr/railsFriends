@@ -5,17 +5,37 @@ class FriendsController < ApplicationController
   # GET /friends or /friends.json
   def index
     @friends = Friend.all
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = FriendPdf.new(@friends)
+        send_data pdf.render, filename: 'friends.pdf', type: 'application/pdf', disposition: "inline"
+      end
+    end
+
+
   end
 
   # GET /friends/1 or /friends/1.json
   def show
+    @friend = Friend.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = FriendPdf.new(@friend)
+        send_data pdf.render, filename: "friend_#{@friend.id}.pdf", 
+                              type: "application/pdf", 
+                              disposition: "inline"
+      end
+    end
+  
   end
 
   # GET /friends/new
   def new
    # @friend = Friend.new
      @friend = current_user.friends.build
-
 
   end
 

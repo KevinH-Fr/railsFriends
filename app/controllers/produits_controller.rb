@@ -13,6 +13,8 @@ class ProduitsController < ApplicationController
   # GET /produits/1 or /produits/1.json
   def show
     @produit = Produit.find(params[:id])
+
+
   end
 
   # GET /produits/new

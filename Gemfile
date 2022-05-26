@@ -48,6 +48,8 @@ gem 'bootstrap', '~> 5.1', '>= 5.1.3'
 
 gem 'jquery-rails'
 
+gem 'prawn', '~> 2.1'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
@@ -76,5 +78,4 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
-
 
