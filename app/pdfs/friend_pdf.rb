@@ -8,7 +8,7 @@ class FriendPdf < Prawn::Document
     end 
 
     def id
-        text "friend \##{@friend.id}", size: 30, style: :bold
+       
         
     end 
 

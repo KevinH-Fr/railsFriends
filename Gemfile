@@ -49,6 +49,7 @@ gem 'bootstrap', '~> 5.1', '>= 5.1.3'
 gem 'jquery-rails'
 
 gem 'prawn', '~> 2.1'
+gem 'prawn-table', '~> 0.2.2'
 
 # Use Sass to process CSS
 # gem "sassc-rails"

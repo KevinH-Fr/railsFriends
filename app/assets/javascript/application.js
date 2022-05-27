@@ -6,7 +6,8 @@ import "@hotwired/turbo-rails"
 import "@popperjs/core"
 import "bootstrap"
 
-//= require jquery3
-//= require jquery_ujs
 
-//= require bootstrap-modal
+//= require jquery
+//= require jquery_ujs
+//= require bootstrap
+//= require_tree .

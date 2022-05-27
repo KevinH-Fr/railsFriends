@@ -1,8 +1,11 @@
+
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
  <%= link_to 'A1soir', 
  root_path, class:"navbar-brand" %>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+   
     <span class="navbar-toggler-icon"></span>
   </button>
 
@@ -13,6 +16,7 @@
       	<%= link_to 'A propos',
       		home_index_path, class:"nav-link" %> 
       </li>
+
 
     
 
@@ -44,24 +48,10 @@
           commandes_path, class:"nav-link" %> 
         </li>
 
-  <li class="nav-item">
-      <% if cart_has_items %>
-        <%= link_to cart_path(@cart), class:"nav-link button is-warning" do %>
-          <span class="icon is-small">
-            <i class ="fa fa-shopping-cart"></i>
-          </span>  
-          <span> Cart
-            <%= cart_count_over_one %>
-          </span> 
-
-          <% end %>
-      <% end %>
-  </li>
 
 
 
 
-       
 
       <% else %>
 

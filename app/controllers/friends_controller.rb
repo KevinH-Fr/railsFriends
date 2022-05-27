@@ -9,8 +9,10 @@ class FriendsController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        pdf = FriendPdf.new(@friends)
-        send_data pdf.render, filename: 'friends.pdf', type: 'application/pdf', disposition: "inline"
+        pdf = FriendsPdf.new(@friends)
+        send_data pdf.render, filename: 'friends.pdf', 
+                              type: 'application/pdf', 
+                              disposition: "inline"
       end
     end
 
