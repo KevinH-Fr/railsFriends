@@ -1,0 +1,24 @@
+<div class="row">
+
+ <%= @cats.each do |cat| %> 
+
+<div class="col-12">   
+<h1 style ="text-align:center;"> <%= cat.heading %> </h1>
+<hr />
+</div>
+<% @produits.each do |produit| %>
+<% if produit.category == cat %>
+    <div class="col-4">
+    <h5>    
+        <%= produit.nom %>
+    </h5>
+    <p>    
+        <%= produit.description %>
+    </p>
+    <span> <% produit.prix %> | <% prouit.taille %>   </span>
+    </div>
+<% end %>
+<% end %>
+<% end %>
+
+</div>

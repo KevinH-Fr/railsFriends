@@ -1,4 +1,5 @@
 class ProduitsController < ApplicationController
+  
   before_action :set_produit, only: %i[ show edit update destroy ]
 
   
@@ -8,6 +9,20 @@ class ProduitsController < ApplicationController
   def index
     @produits = Produit.all
     @produit = Produit.new
+    
+    # byebug
+   # @produits = Produit.search(params[:produit])
+
+    def self.search(search)
+      if search
+        produits = Produit.all
+        produits = produits.where(taille: search[:":taille"][","])
+        return produits
+      else
+        Produit.all
+      end
+    end
+ 
   end
 
   # GET /produits/1 or /produits/1.json
@@ -20,6 +35,7 @@ class ProduitsController < ApplicationController
   # GET /produits/new
   def new
     @produit = Produit.new
+ 
   end
 
   # GET /produits/1/edit
@@ -43,6 +59,7 @@ class ProduitsController < ApplicationController
 
   # PATCH/PUT /produits/1 or /produits/1.json
   def update
+ 
     respond_to do |format|
       if @produit.update(produit_params)
         format.html { redirect_to produit_url(@produit), notice: "Produit was successfully updated." }
@@ -78,11 +95,12 @@ class ProduitsController < ApplicationController
       end
     end
 
-
-
     # Only allow a list of trusted parameters through.
     def produit_params
       
       params.require(:produit).permit(:nom, :description, :prix, :taille, :image)
     end
+
+
+    
 end
