@@ -1,35 +1,25 @@
 <% if user_signed_in? %>
 
-<br/>
-<h1 class="fa-solid fa-shirt fa-2xl fw-bold fs-1"> - Produits</h1>   
-<hr/> 
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      <br/>
+      <h1 class="fa-solid fa-shirt fa-2xl fw-bold fs-1"> - Produits</h1>
+    </div>
+   
+    <div class="col-4">
+      <br/>
+      <%= link_to "Nouveau", new_produit_path, class:"btn btn-secondary" %>  
+    </div>
+  </div>
+</div>
 
-<h3>Search by:</h3>
-<%= form_tag(produits_path, method: "get") do %>
-<select name=produit[:taille], class="form-control">
-  <option value="None">-Select-</option>
-  <option value="Taille">Taille</option>
-  <option value="Couleur">Couleur</option>
-</select><br>
- <% end %>
-
- <%= form_tag produits_path, method: 'get' do %>
-  <%= select_tag :taille, option_tags = nil %>
-
-  <%= submit_tag 'Filter' %>
-<% end %>
-
- <br>
-  <%= link_to "Nouveau produit", new_produit_path, class:"btn btn-secondary" %>
 
 <hr/> 
   <h3>Synthèse :</h3>
     <span>  Nb produits: <%= Produit.all.count %> </span> |
     <span>  Prix moyen: <%= number_to_currency(Produit.average(:prix), locale: :fr) %> </span> |
     <span>  TailleM: <%= Produit.where(taille: 'Medium').count %> </span>
-
-
-
 
 <hr/>
 
@@ -41,7 +31,9 @@
         <th>Image</th>
         <th>Description</th>
         <th>Prix</th>
+        <th>Quantité</th>
         <th>Taille</th>
+        <th>Categorie</th>
         <th>update</th>
         <th colspan="3">Actions</th>
 
@@ -55,7 +47,6 @@
     <tbody>
     <% @produits.each do |produit| %>
 
-
           <tr>
 
             <td> <%= produit.id %>    </td>
@@ -67,7 +58,9 @@
             </td>
            <td> <%= produit.description %>    </td>
            <td> <%= number_to_currency(produit.prix, locale: :fr)   %>    </td>
+           <td> <%= produit.quantite %>    </td>
            <td> <%= produit.taille %>    </td>
+           <td> <%= produit.categorie %>    </td>
            <td> <%= produit.updated_at %>    </td>
 
            <%# actions %>
@@ -83,8 +76,6 @@
              <%= link_to "", edit_produit_path(produit), class:"fa-regular fa-pen-to-square btn btn-secondary" %> 
            </td> 
            
-  
-
 
               <%# ouvrir un nouvel item au clic sur ajouter produit à la commmande 
                ok - passer en parametres l'id du produit selectionner
@@ -98,7 +89,6 @@
                   </td>
                 <% end %>
            
-
           </tr>
 
     <% end %>
@@ -106,10 +96,4 @@
     </tbody>
   </table>
 
-
-
-
-
 <% end %>
-
-

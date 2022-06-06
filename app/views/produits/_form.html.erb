@@ -11,7 +11,6 @@
     </div>
   <% end %>
   
-
   <div class="card text-dark bg-light mb-3" style="max-width: 1080px;">
     <div class="card-header fw-bold fs-2">Editer produit</div>
     
@@ -37,27 +36,41 @@
             <p class="card-text">
                 <%= form.label :prix, style: "display: block" %>
                 <%= form.text_field :prix, class:"form-control", placeholder:"prix"  %> 
+
+                <%= form.label :quantite, style: "display: block" %>
+                <%= form.text_field :quantite, class:"form-control", placeholder:"quantite"  %> 
+
                 <%= form.label :taille, style: "display: block" %>
-                <%#= form.select :taille, ['Small', 'Medium', 'Large']%>
-                 <%= form.select :taille, Produit.tailles %> 
+
+                <%= form.select(:taille, options_for_select([
+                          ["Small", "Small"], ["Medium", "Medium"], ["Large", "Large"]], 
+                            :selected => form.object.taille), 
+                            :include_blank => true) %>
+
+                <%= form.label :categorie, style: "display: block" %>
+
+                <%= form.select(:categorie, options_for_select([
+                              ["Robe", "Robe"], ["Costume", "Costume"]], 
+                             :selected => form.object.categorie), 
+                             :include_blank => true) %>
             </p>
 
             <div class="field">
-                <%= form.label :category %>
               
             </div>
 
-            <p class="card-text">
-              <%= form.submit value: 'Valider', class:'btn btn-warning' %>
-            </p>
+          <div class="actions">
+              <%= form.submit class:'btn btn-secondary' %>
+            </div>
 
+          <br/>
             <p class="card-text">
+
           
                   <%= link_to "", @produit, class:"fa-solid fa-eye btn btn-primary" %> 
                   <%#= button_to "", @produit, data: { turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "fa-solid fa-trash-can btn btn-danger" %>
                   
-                  <%= button_to 'Supprimer', @produit, method: :delete, :onclick => "return confirm('Sûr ?')", class:"btn btn-danger" %> 
-
+                  <%= button_to '', @produit, method: :delete, :onclick => "return confirm('Sûr ?')", class:"fa-solid fa-trash-can btn btn-danger" %> 
                   <%= link_to "", produits_path, class:"fa-solid fa-rotate-left btn btn-secondary" %>
               
             </p>

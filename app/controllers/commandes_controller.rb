@@ -77,6 +77,12 @@ class CommandesController < ApplicationController
   end
 
 
+  
+  def increase_points
+    item = Item.find_by(id: params[:id])
+    item.update_attributes(quantity: (item.quantity + 100))
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -90,6 +96,7 @@ class CommandesController < ApplicationController
 
       params.require(:commande).permit(:id, :nom, :comment, :client_id)
    end
+
 
 
 end

@@ -79,4 +79,9 @@ class ItemsController < ApplicationController
     def item_params
       params.require(:item).permit(:nom, :commande_id, :produitLie, :quantite, :prix)
     end
+
+    def increase_points
+      item = Item.find_by(id: params[:id])
+      item.update_attributes(quantity: (item.quantity + 100))
+    end
 end
